@@ -2,9 +2,13 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import { Alert } from '@itwin/itwinui-react';
+
+
 
 function App() {
   const [count, setCount] = useState(0)
+  const [alert0, setAlert0] = useState ("This is an alert")
 
   return (
     <>
@@ -28,7 +32,18 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+      <Alert.Wrapper className='demo-alert-wrapper'>
+      <Alert.Icon />
+      <Alert.Message>
+        {alert0}
+        <Alert.Action onClick={() => {console.log('Clicked more info!'); setAlert0("Ups..!"); } }>
+          Learn more
+        </Alert.Action>
+      </Alert.Message>
+      <Alert.CloseButton onClick={() => { console.log('CLOSED'); setAlert0("reset") } }/>
+    </Alert.Wrapper>
     </>
+    
   )
 }
 
