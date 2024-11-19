@@ -7,10 +7,13 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "genapi": "openapi-generator-cli generate -i openapi/petstore.yaml -g typescript-axios -o generated-sources/openapi --additional-properties=reactVersion=18.3.1,npmName=restClient,supportsES6=true,withInterfaces=true"
+
   },
   "dependencies": {
     "@itwin/itwinui-react": "^3.15.5",
+    "@openapitools/openapi-generator-cli": "^2.15.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },

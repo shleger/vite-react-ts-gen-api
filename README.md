@@ -48,3 +48,10 @@ export default tseslint.config({
   },
 })
 ```
+
+
+# Generate models + axious from OpenApi
+
+```
+npm run genapi 
+```
