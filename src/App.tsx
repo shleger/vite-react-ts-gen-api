@@ -14,10 +14,11 @@ function App() {
     const resp  = await PetsService.listPets(10)
     const p: Pets = resp as Pets
     setAlert0(p[0].name)
+    console.log("Refreshed")
 
   }
 
-  useEffect (() => {loadPets(), []})
+  useEffect (() => {loadPets(),[setAlert0]})
 
 
  /*  useEffect (() =>  {
@@ -64,7 +65,7 @@ function App() {
       <Alert.CloseButton onClick={ () => { 
 
         console.log('CLOSED')
-        alert0  
+        setAlert0("any")  
         console.log(alert0)
         
         } }/>
