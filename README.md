@@ -50,8 +50,16 @@ export default tseslint.config({
 ```
 
 
-# Generate models + axious from OpenApi
+# Generate models + axios from OpenApi
 
 ```
 npm run genapi 
+
+# https://github.com/stoplightio/prism 
+# install yaml openapi mock server
+npm install -g @stoplight/prism-cli 
+
+# start mock server with yaml file
+prism mock openapi/petstore.yaml
+
 ```

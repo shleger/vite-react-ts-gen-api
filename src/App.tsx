@@ -3,13 +3,29 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import { Alert } from '@itwin/itwinui-react';
+import { PetsService } from '../api';
 
 
+function loadPets () {
+  const pets = PetsService.listPets(10)
+  .then(response => { return response})
+  .then(text => {
+    console.log(text);
+  });
+}
 
 function App() {
   const [count, setCount] = useState(0)
   const [alert0, setAlert0] = useState ("This is an alert")
 
+
+  const pets = PetsService.listPets(10)
+  .then(response => { return response})
+  .then(text => {
+    console.log(text);
+  });
+
+  
   return (
     <>
       <div>
@@ -40,7 +56,13 @@ function App() {
           Learn more
         </Alert.Action>
       </Alert.Message>
-      <Alert.CloseButton onClick={() => { console.log('CLOSED'); setAlert0("reset") } }/>
+      <Alert.CloseButton onClick={async () => { 
+
+        console.log('CLOSED')
+        setAlert0("reset")   
+        console.log(pets)
+        
+        } }/>
     </Alert.Wrapper>
     </>
     

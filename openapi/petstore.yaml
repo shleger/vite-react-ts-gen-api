@@ -90,10 +90,13 @@ components:
         id:
           type: integer
           format: int64
+          example: 123
         name:
           type: string
+          example: Bobik
         tag:
           type: string
+          example: cute
     Pets:
       type: array
       items:
