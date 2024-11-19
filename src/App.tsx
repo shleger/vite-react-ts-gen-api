@@ -1,29 +1,34 @@
-import { useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import { Alert } from '@itwin/itwinui-react';
-import { PetsService } from '../api';
+import { Pets, PetsService } from '../api';
 
-
-function loadPets () {
-  const pets = PetsService.listPets(10)
-  .then(response => { return response})
-  .then(text => {
-    console.log(text);
-  });
-}
 
 function App() {
-  const [count, setCount] = useState(0)
-  const [alert0, setAlert0] = useState ("This is an alert")
+  const [count, setCount]   = useState(0)
+  const [alert0, setAlert0] = useState ("This is an alert") // TODO init state overwritten
+
+  const loadPets = async () => {
+    const resp  = await PetsService.listPets(10)
+    const p: Pets = resp as Pets
+    setAlert0(p[0].name)
+
+  }
+
+  useEffect (() => {loadPets(), []})
 
 
-  const pets = PetsService.listPets(10)
-  .then(response => { return response})
-  .then(text => {
-    console.log(text);
-  });
+ /*  useEffect (() =>  {
+    PetsService.listPets(10)
+      .then(response  => {
+        const p: Pets = response as Pets
+        console.log("useEffect: " + p[0].name)
+        setAlert0(p[0].name)
+        return p 
+      })
+  }) */
 
   
   return (
@@ -56,11 +61,11 @@ function App() {
           Learn more
         </Alert.Action>
       </Alert.Message>
-      <Alert.CloseButton onClick={async () => { 
+      <Alert.CloseButton onClick={ () => { 
 
         console.log('CLOSED')
-        setAlert0("reset")   
-        console.log(pets)
+        alert0  
+        console.log(alert0)
         
         } }/>
     </Alert.Wrapper>
